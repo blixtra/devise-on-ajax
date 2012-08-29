@@ -1,0 +1,7 @@
+<h2> Activate your account by setting a password.
+<%= form_for resource, :as => resource_name, :url => confirm_path do |f| %>
+  <%= f.password_field :password, :placeholder => 'password' %>
+  <%= f.password_field :password_confirmation, :placeholder => 'password confirmation' %>
+  <%= f.hidden_field :confirmation_token %>
+  <%= f.submit 'Confirm' %>
+<% end %>

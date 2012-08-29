@@ -1,6 +1,10 @@
 DeviseOnAjax::Application.routes.draw do
-  devise_for :users
-  # resources :users, only: [:index, :show]
+  devise_for :users, :controllers => {:confirmations => 'confirmations'}
+
+  devise_scope :user do
+    put "/confirm" => "confirmations#confirm"
+  end
+
   root :to => "home#index"
 
   # The priority is based upon order of creation:
