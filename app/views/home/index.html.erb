@@ -1,0 +1,20 @@
+<h1>Testing devise forms with Ajax</h1>
+<p>The objective is to create a login process that has following flow.</p>
+<ol>
+<li>Present a form with only a field for entering an email address</li>
+<li>Click submit button</li>
+<li>If successful replace for with a 'thank you' message with a form to fill in any additional informationto and if unsuccessful reshow form with validation errors. </li>
+<li>Once this info is submitted replace form with instructions to look out for a comfirmation email</li>
+<li>Wait to recieve an email with a confirmation link</li>
+<li>Clicking on confirmation link brings user to confirmation page which allows the user to enter a password and any additional user profile info</li>
+</ol>
+
+<p></p>
+<% if user_signed_in? %>
+<h2>Welcome <%= current_user.email %></h2>
+<p><%= link_to 'Edit profile', edit_user_registration_path %></p>
+<p><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></p>
+<% else %>
+<p><%= link_to 'Sign in', new_user_session_path %></p>
+<p><%= link_to 'Sign up', new_user_registration_path %></p>
+<% end %>
