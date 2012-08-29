@@ -11,7 +11,11 @@
 <p></p>
 <% if user_signed_in? %>
 <h2>Welcome <%= current_user.email %></h2>
+<% if current_user.confirmed? %>
 <p><%= link_to 'Edit profile', edit_user_registration_path %></p>
+<% else %>
+<p>You'll be able to answer some questions here.</p>
+<% end %>
 <p><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></p>
 <% else %>
 <h3>Sign in</h3>

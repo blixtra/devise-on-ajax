@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   protected
+
   def password_required?
     false
   end
