@@ -1,16 +1,16 @@
 <% if user_signed_in? %>
-<h2>Welcome <%= current_user.email %></h2>
-<% if current_user.confirmed? %>
-<p><%= link_to 'Edit profile', edit_user_registration_path %></p>
+  <h2>Welcome <%= current_user.email %></h2>
+  <% if current_user.confirmed? %>
+    <p><%= link_to 'Edit profile', edit_user_registration_path %></p>
+  <% else %>
+    <% if current_user.favorite_word == nil %>
+      <%= render 'favorite_color_form' %>
+    <% else %>
+      <p> Your favorite word is <%= current_user.favorite_word %>.
+    <% end %>
+  <% end %>
+  <p><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></p>
 <% else %>
-<% if current_user.favorite_word == nil %>
-<%= render 'favorite_color_form' %>
-<% else %>
-<p> Your favorite word is <%= current_user.favorite_word %>.
-<% end %>
-<% end %>
-<p><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></p>
-<% else %>
-<%= render 'sign_in_form' %>
-<%= render 'sign_up_form' %>
+  <%= render 'sign_in_form' %>
+  <%= render 'sign_up_form' %>
 <% end %>
