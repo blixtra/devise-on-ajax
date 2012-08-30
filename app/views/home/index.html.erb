@@ -14,7 +14,15 @@
 <% if current_user.confirmed? %>
 <p><%= link_to 'Edit profile', edit_user_registration_path %></p>
 <% else %>
-<p>You'll be able to answer some questions here.</p>
+<% if current_user.favorite_word == nil %>
+<h3> Tell us your favorite word
+<%= form_for current_user, :url => user_favorite_word_path(current_user) do |f| %>
+  <%= f.text_field :favorite_word %>
+  <%= f.submit 'Submit' %>
+<% end %>
+<% else %>
+<p> Your favorite word is <%= current_user.favorite_word %>.
+<% end %>
 <% end %>
 <p><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></p>
 <% else %>

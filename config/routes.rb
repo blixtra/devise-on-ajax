@@ -1,6 +1,10 @@
 DeviseOnAjax::Application.routes.draw do
   devise_for :users, :controllers => {:confirmations => 'confirmations'}
 
+  resources :users, :only => [] do
+    put :favorite_word
+  end
+
   devise_scope :user do
     put "/confirm" => "confirmations#confirm"
   end
