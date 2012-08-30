@@ -7,37 +7,20 @@
 <li>Wait to recieve an email with a confirmation link</li>
 <li>Clicking on confirmation link brings user to confirmation page which allows the user to enter a password and any additional user profile info</li>
 </ol>
-
-<p></p>
+<hr/>
 <% if user_signed_in? %>
 <h2>Welcome <%= current_user.email %></h2>
 <% if current_user.confirmed? %>
 <p><%= link_to 'Edit profile', edit_user_registration_path %></p>
 <% else %>
 <% if current_user.favorite_word == nil %>
-<h3> Tell us your favorite word
-<%= form_for current_user, :url => user_favorite_word_path(current_user) do |f| %>
-  <%= f.text_field :favorite_word %>
-  <%= f.submit 'Submit' %>
-<% end %>
+<%= render 'favorite_color_form' %>
 <% else %>
 <p> Your favorite word is <%= current_user.favorite_word %>.
 <% end %>
 <% end %>
 <p><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></p>
 <% else %>
-<h3>Sign in</h3>
-<%= form_for resource, :as => resource_name, :url => user_session_path do |f| %>
-  <%= f.text_field :email %>
-  <%= f.password_field :password %>
-  <%= f.check_box :remember_me %>
-  <%= f.label :remember_me %>
-  <%= f.submit 'Sign in' %>
-  <%= link_to "Forgot your password?", new_password_path('user') %>
-<% end %>
-<h3>Sign up</h3>
-<%= form_for resource, :as => resource_name, :url => registration_path(resource_name) do |f| %>
-  <%= f.text_field :email, :required => true, :placeholder => 'your email here!' %>
-  <%= f.submit 'Sign up' %>
-<% end %>
+<%= render 'sign_in_form' %>
+<%= render 'sign_up_form' %>
 <% end %>

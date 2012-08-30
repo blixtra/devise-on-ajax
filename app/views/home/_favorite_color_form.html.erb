@@ -1,0 +1,7 @@
+<div id="favorite_color">
+  <h3> Tell us your favorite word
+  <%= form_for current_user, :url => user_favorite_word_path(current_user) do |f| %>
+    <%= f.text_field :favorite_word %>
+    <%= f.submit 'Submit' %>
+  <% end %>
+</div>
