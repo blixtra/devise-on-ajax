@@ -11,6 +11,10 @@
   <% end %>
   <p><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></p>
 <% else %>
-  <%= render 'sign_in_form' %>
-  <%= render 'sign_up_form' %>
+  <div class="new_signup_container">
+    <div class="form_container">
+      <%= render 'sign_in_form' %>
+      <%= render 'sign_up_form' %>
+    </div>
+  </div>
 <% end %>
